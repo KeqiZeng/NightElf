@@ -212,7 +212,7 @@ let g:terminal_ansi_colors = [s:base1[0], s:red[0], s:green[0], s:yellow[0],
 
 
 
-"coloring Editor begin
+" Vim-Editor
 call s:hi('NonText',                   s:base4,      '',         'none')
 call s:hi('Normal',                    s:base5,      s:base1,    'none')
 call s:hi('ColorColumn',               '',           s:base2,    '')
@@ -264,4 +264,4 @@ else
   call s:hi('VertSplit',                 s:base4,      s:base1,    'none')
 endif
 
-"coloring Editor end
+" Standard Syntax
