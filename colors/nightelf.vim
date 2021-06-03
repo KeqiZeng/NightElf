@@ -183,7 +183,7 @@ call s:hi('NE_YellowBold',              s:yellow,     '',    'bold')
 call s:hi('NE_GreenSign',               s:green,      s:base1,    'none')
 call s:hi('NE_YellowSign',              s:yellow,     s:base1,    'none')
 call s:hi('NE_RedSign',                 s:red,        s:base1,    'none')
-call s:hi('NE_BlueSign',                s:blue,       s:base1,    'none')
+call s:hi('NE_OrangeSign',              s:orange,       s:base1,    'none')
 " }}}
 
 
@@ -284,6 +284,7 @@ if g:nightelf_italic == 1
 else
   call s:hi('Comment',                   s:base4,      '',         'none')
   call s:hi('Todo',                      s:base5,      s:base1,    'bold')
+endif
 
 " Variable name
 hi! link Identifier NE_Purple
@@ -336,7 +337,7 @@ hi! link Typedef NE_Green
 " Special
 hi! link Special NE_Pink
 " Error
-hi! Error NE_RedBold
+hi! link Error NE_RedBold
 
 " Delimiter
 call s:hi('Delimiter',                 s:base5,      '',         '')
@@ -514,7 +515,7 @@ hi! link htmlBoldItalic markdownBoldItalic
 hi! link htmlUnderline Underlined
 call s:hi('htmlBoldUnderline', s:purple, '', 'bold,underline')
 call s:hi('htmlBoldUnderlineItalic', s:red, '', 'bold,underline,italic')
-call s:HL('htmlUnderlineItalic', s:blue, '', 'underline,italic')
+call s:hi('htmlUnderlineItalic', s:blue, '', 'underline,italic')
 " }}}
 
 
@@ -579,11 +580,11 @@ hi! link cssGeneratedContentProp NE_Blue
 
 
 " JavaScript: {{{
-hi! javaScriptNumber Number
-hi! javaScriptBraces NE_Pink
-hi! javaScriptMember NE_Green
-hi! javaScriptMessage NE_Green
-hi! javaScriptGlobal NE_Green
+hi! link javaScriptNumber Number
+hi! link javaScriptBraces NE_Pink
+hi! link javaScriptMember NE_Green
+hi! link javaScriptMessage NE_Green
+hi! link javaScriptGlobal NE_Green
 " }}}
 
 " }}}
@@ -592,23 +593,23 @@ hi! javaScriptGlobal NE_Green
 " CoC: {{{
 hi! link CocErrorSign NE_RedSign
 hi! link CocWarningSign NE_YellowSign
-hi! link CocInfoSign NE_BlueSign
+hi! link CocInfoSign NE_OrangeSign
 hi! link CocHintSign NE_GreenSign
 
 hi! link CocErrorVirtualText NE_Red
 hi! link CocWarningVirtualText NE_Yellow
-hi! link CocInfoVirtualText NE_Blue
+hi! link CocInfoVirtualText NE_Orange
 hi! link CocHintVirtualText NE_Green
 
 hi! link CocGitAddedSign NE_GreenSign
 hi! link CocGitChangedSign NE_YellowSign
 hi! link CocGitRemovedSign NE_RedSign
 hi! link CocGitTopRemovedSign NE_RedSign
-hi! link CocGitChangeRemovedSign NE_BlueSign
+hi! link CocGitChangeRemovedSign NE_OrangeSign
 
 call s:hi('CocWarningFloat',            s:yellow,     s:base2,    'none')
 call s:hi('CocErrorFloat',              s:red,        s:base2,    'none')
-call s:hi('CocInfoFloat',               s:blue,       s:base2,    'none')
+call s:hi('CocInfoFloat',               s:orange,       s:base2,    'none')
 call s:hi('CocHintFloat',               s:green,      s:base2,    'none')
 " }}}
 
@@ -633,20 +634,20 @@ endif
 hi! link GitGutterAdd NE_GreenSign
 hi! link GitGutterChange NE_YellowSign
 hi! link GitGutterDelete NE_RedSign
-hi! link GitGutterChangeDelete NE_BlueSign
+hi! link GitGutterChangeDelete NE_OrangeSign
 " }}}
 
 
 "-------- Startify: {{{
 hi! link StartifyBracket NE_Brown
-hi! link StartifyFile NE_Blue
+hi! link StartifyFile NE_Green
 hi! link StartifyPath NE_Purple
 hi! link StartifySlash NE_Purple
-hi! link StartifySection NE_Orange
+hi! link StartifySection NE_Blue
+hi! link StartifyNumber NE_Red
 " }}}
 
-
-" Rainbow: {{{
+"" Rainbow: {{{
 if !exists('g:rbpt_colorpairs')
   let g:rbpt_colorpairs =
     \ [
@@ -671,3 +672,4 @@ endif
 let g:niji_dark_colours = g:rbpt_colorpairs
 let g:niji_light_colours = g:rbpt_colorpairs
 " }}}
+
