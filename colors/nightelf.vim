@@ -136,7 +136,7 @@ if !exists('g:nightelf_italic')
 endif
 
 if !exists('g:nightelf_background')
-  let g:nightelf_background='#363636'
+  let g:nightelf_background='#323232'
 endif
 
 if !exists('g:nightelf_solid_vertsplit')
@@ -154,13 +154,13 @@ let s:base5 = [bases[4], 250]
 let s:red        = ['#d15e64', 168]
 let s:green      = ['#98c378', 108]
 let s:yellow     = ['#d8aa64', 179]
-let s:blue       = ['#86a6e8', 74]
+let s:blue       = ['#86a6e8',  74]
 let s:purple     = ['#bb88e5', 140]
 let s:orange     = ['#e18254', 173]
 let s:pink       = ['#e69ca0', 181]
-let s:teal       = ['#6abab6', 73]
+let s:teal       = ['#6abab6',  73]
 let s:beige      = ['#dfbe8d', 180]
-let s:aqua       = ['#54ec8c', 50]
+let s:aqua       = ['#54ec8c',  50]
 let s:brown      = ['#a65832', 130]
 
 
@@ -180,10 +180,10 @@ call s:hi('NE_BlueBold',                s:blue,       '',    'bold')
 call s:hi('NE_OrangeBold',              s:orange,     '',    'bold')
 call s:hi('NE_YellowBold',              s:yellow,     '',    'bold')
 
+call s:hi('NE_RedSign',                 s:red,        s:base1,    'none')
 call s:hi('NE_GreenSign',               s:green,      s:base1,    'none')
 call s:hi('NE_YellowSign',              s:yellow,     s:base1,    'none')
-call s:hi('NE_RedSign',                 s:red,        s:base1,    'none')
-call s:hi('NE_OrangeSign',              s:orange,       s:base1,    'none')
+call s:hi('NE_OrangeSign',              s:orange,     s:base1,    'none')
 " }}}
 
 
@@ -321,11 +321,11 @@ hi! link PreCondit NE_Blue
 " Generic constant
 hi! link Constant NE_Orange
 " Boolean constant: true, false
-hi! link Boolean NE_Green
+hi! link Boolean NE_Red
 " Number constant: 234, 0xff
-hi! link Number NE_Green
+hi! link Number NE_Red
 " Floating point constant: 2.3e10
-hi! link Float NE_Green
+hi! link Float NE_Red
 " Generic type
 hi! link Type NE_Green
 " static, register, volatile, etc
@@ -609,13 +609,13 @@ hi! link CocGitChangeRemovedSign NE_OrangeSign
 
 call s:hi('CocWarningFloat',            s:yellow,     s:base2,    'none')
 call s:hi('CocErrorFloat',              s:red,        s:base2,    'none')
-call s:hi('CocInfoFloat',               s:orange,       s:base2,    'none')
+call s:hi('CocInfoFloat',               s:orange,     s:base2,    'none')
 call s:hi('CocHintFloat',               s:green,      s:base2,    'none')
 " }}}
 
 
 " EasyMotion: {{{
-hi! link EasyMotionTarget NE_Purple
+hi! link EasyMotionTarget NE_Red
 hi! link EasyMotionShade Comment
 " }}}
 
@@ -645,31 +645,5 @@ hi! link StartifyPath NE_Purple
 hi! link StartifySlash NE_Purple
 hi! link StartifySection NE_Blue
 hi! link StartifyNumber NE_Red
-" }}}
-
-"" Rainbow: {{{
-if !exists('g:rbpt_colorpairs')
-  let g:rbpt_colorpairs =
-    \ [
-      \ ['140', '#bb88e5'], ['74',  '#86a6e8'],
-      \ ['108', '#98c378'], ['173', '#e18254']
-    \ ]
-endif
-
-let g:rainbow_guifgs = ['#bb88e5', '#86a6e8', '#98c378', '#e18254']
-let g:rainbow_ctermfgs = [ '140', '74', '108', '173' ]
-
-if !exists('g:rainbow_conf')
-   let g:rainbow_conf = {}
-endif
-if !has_key(g:rainbow_conf, 'guifgs')
-   let g:rainbow_conf['guifgs'] = g:rainbow_guifgs
-endif
-if !has_key(g:rainbow_conf, 'ctermfgs')
-   let g:rainbow_conf['ctermfgs'] = g:rainbow_ctermfgs
-endif
-
-let g:niji_dark_colours = g:rbpt_colorpairs
-let g:niji_light_colours = g:rbpt_colorpairs
 " }}}
 
