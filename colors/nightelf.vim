@@ -136,7 +136,7 @@ if !exists('g:nightelf_italic')
 endif
 
 if !exists('g:nightelf_background')
-  let g:nightelf_background='#323232'
+  let g:nightelf_background='#303030'
 endif
 
 if !exists('g:nightelf_solid_vertsplit')
@@ -157,7 +157,7 @@ let s:yellow     = ['#d8aa64', 179]
 let s:blue       = ['#86a6e8',  74]
 let s:purple     = ['#bb88e5', 140]
 let s:orange     = ['#e18254', 173]
-let s:pink       = ['#e69ca0', 181]
+let s:pink       = ['#ff88a0', 181]
 let s:teal       = ['#6abab6',  73]
 let s:beige      = ['#dfbe8d', 180]
 let s:aqua       = ['#54ec8c',  50]
@@ -327,15 +327,15 @@ hi! link Number NE_Red
 " Floating point constant: 2.3e10
 hi! link Float NE_Red
 " Generic type
-hi! link Type NE_Green
+hi! link Type NE_Yellow
 " static, register, volatile, etc
 hi! link StorageClass NE_Pink
 " struct, union, enum, etc.
 hi! link Structure NE_Brown
 " typedef
-hi! link Typedef NE_Green
+hi! link Typedef NE_Yellow
 " Special
-hi! link Special NE_Pink
+hi! link Special NE_Green
 " Error
 hi! link Error NE_RedBold
 
