@@ -343,7 +343,8 @@ hi! link Label NE_Blue
 " try, catch, throw
 hi! link Exception NE_Red
 " sizeof, "+", "*", etc.
-hi! link Operator NE_Yellow
+"hi! link Operator NE_Yellow
+call s:hi('Operator',                   g:base5,      '',         'none')
 " Any other keyword
 hi! link Keyword NE_Brown
 " Generic preprocessor
@@ -389,9 +390,12 @@ call s:hi('Conceal',                   s:beige,      g:base1,    '')
 " Languages syntax {{{
 " C: {{{
 hi! link cDefine Define
+hi! link cOperator NE_Yellow
 " }}}
 
 " C++: {{{
+hi! link cppOperator NE_Yellow
+
 " require vim-polyglot
 hi! link cppSTLdefine Define
 hi! link cppSTLexception Exception
@@ -420,6 +424,7 @@ hi! link  UsingDeclarationTag NE_Yellow
 
 
 " Python: {{{
+hi! link pythonOperator NE_Yellow
 hi! link pythonBuiltinObj NE_Purple
 hi! link pythonBuiltinFunc NE_Purple
 hi! link pythonDecoratorName NE_Green
@@ -485,6 +490,7 @@ hi! link jsonString NE_Orange
 
 
 " Lua: {{{
+hi! link luaOperator NE_Yellow
 hi! link luaIn NE_Blue
 hi! link luaTable NE_Orange
 " }}}
