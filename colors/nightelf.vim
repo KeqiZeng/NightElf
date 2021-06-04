@@ -127,16 +127,49 @@ endfun
 " }}}
 
 
-if !exists('g:nightelf_italic')
+"if !exists('g:nightelf_italic')
+  "if has('gui_running') || $TERM_ITALICS == 'true'
+    "let g:nightelf_italic=1
+  "else
+    "let g:nightelf_italic=0
+  "endif
+"endif
+
+" Italic Comment
+if !exists('g:nightelf_italic_comment')
+    let g:nightelf_italic_comment=0
+endif
+
+if g:nightelf_italic_comment == 1
   if has('gui_running') || $TERM_ITALICS == 'true'
-    let g:nightelf_italic=1
+    let g:nightelf_italic_comment=1
   else
-    let g:nightelf_italic=0
+    let g:nightelf_italic_comment=0
   endif
 endif
 
-if !exists('g:nightelf_background')
-  let g:nightelf_background='#303030'
+
+" Variable Contrast
+if !exists('g:nightelf_contrast')
+  let g:nightelf_contrast=3
+endif
+
+if g:nightelf_contrast == 0
+  let s:nightelf_background='#242424'
+elseif g:nightelf_contrast == 1
+  let s:nightelf_background='#262626'
+elseif g:nightelf_contrast == 2
+  let s:nightelf_background='#282828'
+elseif g:nightelf_contrast == 3
+  let s:nightelf_background='#303030'
+elseif g:nightelf_contrast == 4
+  let s:nightelf_background='#323232'
+elseif g:nightelf_contrast == 5
+  let s:nightelf_background='#343434'
+elseif g:nightelf_contrast == 6
+  let s:nightelf_background='#363636'
+elseif g:nightelf_contrast == 7
+  let s:nightelf_background='#383838'
 endif
 
 if !exists('g:nightelf_solid_vertsplit')
@@ -144,20 +177,21 @@ if !exists('g:nightelf_solid_vertsplit')
 endif
 
 " color generate {{{
-let bases = s:generate_base_colors(g:nightelf_background)
-let s:base1 = [bases[0], 236]
-let s:base2 = [bases[1], 237]
-let s:base3 = [bases[2], 240]
-let s:base4 = [bases[3], 245]
-let s:base5 = [bases[4], 250]
 
-let s:red        = ['#d15e64', 168]
+let bases = s:generate_base_colors(s:nightelf_background)
+let g:base1 = [bases[0], 236]
+let g:base2 = [bases[1], 237]
+let g:base3 = [bases[2], 240]
+let g:base4 = [bases[3], 245]
+let g:base5 = [bases[4], 250]
+
+let s:red        = ['#f15e64', 168]
 let s:green      = ['#98c378', 108]
 let s:yellow     = ['#d8aa64', 179]
 let s:blue       = ['#86a6e8',  74]
 let s:purple     = ['#bb88e5', 140]
-let s:orange     = ['#e18254', 173]
-let s:pink       = ['#ff88a0', 181]
+let s:orange     = ['#e88854', 173]
+let s:pink       = ['#ff9999', 181]
 let s:teal       = ['#6abab6',  73]
 let s:beige      = ['#dfbe8d', 180]
 let s:aqua       = ['#54ec8c',  50]
@@ -178,75 +212,74 @@ call s:hi('NE_GreenBold',               s:green,      '',    'bold')
 call s:hi('NE_PurpleBold',              s:purple,     '',    'bold')
 call s:hi('NE_BlueBold',                s:blue,       '',    'bold')
 call s:hi('NE_OrangeBold',              s:orange,     '',    'bold')
-call s:hi('NE_YellowBold',              s:yellow,     '',    'bold')
 
-call s:hi('NE_RedSign',                 s:red,        s:base1,    'none')
-call s:hi('NE_GreenSign',               s:green,      s:base1,    'none')
-call s:hi('NE_YellowSign',              s:yellow,     s:base1,    'none')
-call s:hi('NE_OrangeSign',              s:orange,     s:base1,    'none')
+call s:hi('NE_RedSign',                 s:red,        g:base1,    'none')
+call s:hi('NE_GreenSign',               s:green,      g:base1,    'none')
+call s:hi('NE_YellowSign',              s:yellow,     g:base1,    'none')
+call s:hi('NE_OrangeSign',              s:orange,     g:base1,    'none')
 " }}}
 
 
 " neovim terminal colors
 if has('nvim')
-  let g:terminal_color_0  = s:base1[0]
+  let g:terminal_color_0  = g:base1[0]
   let g:terminal_color_1  = s:red[0]
   let g:terminal_color_2  = s:green[0]
   let g:terminal_color_3  = s:yellow[0]
   let g:terminal_color_4  = s:blue[0]
   let g:terminal_color_5  = s:purple[0]
   let g:terminal_color_6  = s:orange[0]
-  let g:terminal_color_7  = s:base4[0]
-  let g:terminal_color_8  = s:base2[0]
+  let g:terminal_color_7  = g:base4[0]
+  let g:terminal_color_8  = g:base2[0]
   let g:terminal_color_9  = s:pink[0]
   let g:terminal_color_10 = s:teal[0]
   let g:terminal_color_11 = s:beige[0]
   let g:terminal_color_12 = s:aqua[0]
-  let g:terminal_color_13 = s:base3[0]
+  let g:terminal_color_13 = g:base3[0]
   let g:terminal_color_14 = s:brown[0]
-  let g:terminal_color_15 = s:base5[0]
+  let g:terminal_color_15 = g:base5[0]
 endif
 
 " vim terminal colors
-let g:terminal_ansi_colors = [s:base1[0], s:red[0], s:green[0], s:yellow[0],
-      \ s:blue[0], s:purple[0], s:orange[0], s:base4[0], s:base2[0], s:pink[0],
-      \ s:teal[0], s:beige[0], s:aqua[0], s:base3[0], s:brown[0], s:base5[0]]
+let g:terminal_ansi_colors = [g:base1[0], s:red[0], s:green[0], s:yellow[0],
+      \ s:blue[0], s:purple[0], s:orange[0], g:base4[0], g:base2[0], s:pink[0],
+      \ s:teal[0], s:beige[0], s:aqua[0], g:base3[0], s:brown[0], g:base5[0]]
 
 
 
 " Vim-Editor {{{
-call s:hi('NonText',                   s:base4,      '',         'none')
-call s:hi('Normal',                    s:base5,      s:base1,    'none')
-call s:hi('ColorColumn',               '',           s:base2,    '')
-call s:hi('Cursor',                    s:base2,      s:base5,    '')
-call s:hi('CursorLine',                '',           s:base2,    'none')
-call s:hi('CursorLineNr',              s:blue,       s:base1,    'none')
-call s:hi('LineNr',                    s:base3,      '',         '')
-call s:hi('DiffAdd',                   s:green,      s:base1,    'none')
-call s:hi('DiffChange',                s:yellow,     s:base1,    'none')
-call s:hi('DiffDelete',                s:red,        s:base1,    'none')
-call s:hi('DiffText',                  s:blue,       s:base1,    'none')
-call s:hi('FoldColumn',                s:base4,      s:base2,    '')
-call s:hi('Folded',                    s:base3,      s:base1,    '')
+call s:hi('NonText',                   g:base4,      '',         'none')
+call s:hi('Normal',                    g:base5,      g:base1,    'none')
+call s:hi('ColorColumn',               '',           g:base2,    '')
+call s:hi('Cursor',                    g:base2,      g:base5,    '')
+call s:hi('CursorLine',                '',           g:base2,    'none')
+call s:hi('CursorLineNr',              s:blue,       g:base1,    'none')
+call s:hi('LineNr',                    g:base3,      '',         '')
+call s:hi('DiffAdd',                   s:green,      g:base1,    'none')
+call s:hi('DiffChange',                s:yellow,     g:base1,    'none')
+call s:hi('DiffDelete',                s:red,        g:base1,    'none')
+call s:hi('DiffText',                  s:blue,       g:base1,    'none')
+call s:hi('FoldColumn',                g:base4,      g:base2,    '')
+call s:hi('Folded',                    g:base3,      g:base1,    '')
 call s:hi('IncSearch',                 s:beige,      '',         '')
-call s:hi('Search',                    s:base1,      s:beige,    '')
-call s:hi('MatchParen',                s:aqua,       s:base3,         'underline,bold')
-call s:hi('Pmenu',                     s:base5,      s:base2,    '')
-call s:hi('PmenuSbar',                 '',           s:base2,    '')
-call s:hi('PmenuSel',                  s:base2,      s:green,    '')
-call s:hi('PmenuThumb',                '',           s:base4,    '')
-call s:hi('SignColumn',                s:base5,      s:base1,    '')
-call s:hi('SpecialKey',                s:base4,      '',         '')
-call s:hi('SpellBad',                  s:red,        s:base1,    'underline')
-call s:hi('SpellCap',                  s:brown,      s:base1,    'none')
-call s:hi('SpellRare',                 s:brown,      s:base1,    'none')
-call s:hi('SpellLocal',                s:brown,      s:base1,    'none')
-call s:hi('StatusLine',                s:base5,      s:base3,    'none')
-call s:hi('StatusLineNC',              s:base2,      s:base4,    '')
-call s:hi('TabLine',                   s:base4,      s:base2,    'none')
-call s:hi('TabLineSel',                s:yellow,     s:base2,    'none')
-call s:hi('Visual',                    s:base5,      s:base3,    '')
-call s:hi('WildMenu',                  s:base2,      s:green,    '')
+call s:hi('Search',                    g:base1,      s:beige,    '')
+call s:hi('MatchParen',                s:aqua,       g:base3,         'underline,bold')
+call s:hi('Pmenu',                     g:base5,      g:base2,    '')
+call s:hi('PmenuSbar',                 '',           g:base2,    '')
+call s:hi('PmenuSel',                  g:base2,      s:green,    '')
+call s:hi('PmenuThumb',                '',           g:base4,    '')
+call s:hi('SignColumn',                g:base5,      g:base1,    '')
+call s:hi('SpecialKey',                g:base4,      '',         '')
+call s:hi('SpellBad',                  s:red,        g:base1,    'underline')
+call s:hi('SpellCap',                  s:brown,      g:base1,    'none')
+call s:hi('SpellRare',                 s:brown,      g:base1,    'none')
+call s:hi('SpellLocal',                s:brown,      g:base1,    'none')
+call s:hi('StatusLine',                g:base5,      g:base3,    'none')
+call s:hi('StatusLineNC',              g:base2,      g:base4,    '')
+call s:hi('TabLine',                   g:base4,      g:base2,    'none')
+call s:hi('TabLineSel',                s:yellow,     g:base2,    'none')
+call s:hi('Visual',                    g:base5,      g:base3,    '')
+call s:hi('WildMenu',                  g:base2,      s:green,    '')
 
 hi! link CursorColumn CursorLine
 hi! link TabLineFill TabLineFill
@@ -268,9 +301,9 @@ hi! link lCursor Cursor
 
 " Solid bar for vertical split
 if g:nightelf_solid_vertsplit == 1
-  call s:hi('VertSplit',                 s:base2,      s:base2,    'none')
+  call s:hi('VertSplit',                 g:base2,      g:base2,    'none')
 else
-  call s:hi('VertSplit',                 s:base4,      s:base1,    'none')
+  call s:hi('VertSplit',                 g:base4,      g:base1,    'none')
 endif
 " }}}
 
@@ -278,12 +311,12 @@ endif
 " Standard Syntax {{{
 
 " Comment and TODO
-if g:nightelf_italic == 1
-  call s:hi('Comment',                   s:base4,      '',         'italic')
-  call s:hi('Todo',                      s:base5,      s:base1,    'bold, italic')
+if g:nightelf_italic_comment == 1
+  call s:hi('Comment',                   g:base4,      '',         'italic')
+  call s:hi('Todo',                      g:base5,      g:base1,    'bold, italic')
 else
-  call s:hi('Comment',                   s:base4,      '',         'none')
-  call s:hi('Todo',                      s:base5,      s:base1,    'bold')
+  call s:hi('Comment',                   g:base4,      '',         'none')
+  call s:hi('Todo',                      g:base5,      g:base1,    'bold')
 endif
 
 " Variable name
@@ -327,24 +360,24 @@ hi! link Number NE_Red
 " Floating point constant: 2.3e10
 hi! link Float NE_Red
 " Generic type
-hi! link Type NE_Yellow
+hi! link Type NE_Pink
 " static, register, volatile, etc
-hi! link StorageClass NE_Pink
+hi! link StorageClass NE_Yellow
 " struct, union, enum, etc.
-hi! link Structure NE_Brown
+hi! link Structure NE_Green
 " typedef
-hi! link Typedef NE_Yellow
+hi! link Typedef NE_Pink
 " Special
 hi! link Special NE_Green
 " Error
 hi! link Error NE_RedBold
 
 " Delimiter
-call s:hi('Delimiter',                 s:base5,      '',         '')
+call s:hi('Delimiter',                 g:base5,      '',         '')
 " Underlined
-call s:hi('Underlined',                s:base5,      '',         'underline')
+call s:hi('Underlined',                g:base5,      '',         'underline')
 " Conceal
-call s:hi('Conceal',                   s:beige,      s:base1,    '')
+call s:hi('Conceal',                   s:beige,      g:base1,    '')
 
 " }}}
 
@@ -390,7 +423,7 @@ hi! link pythonRun NE_Orange
 hi! link pythonCoding NE_Orange
 hi! link pythonExceptions Exception
 hi! link pythonBoolean Boolean
-call s:hi('pythonDot',                    s:base3,      s:base1,    'none')
+call s:hi('pythonDot',                    g:base3,      g:base1,    'none')
 " }}}
 
 
@@ -401,14 +434,14 @@ call s:hi('markdownBoldItalic',           s:red,             '',      'bold,ital
 
 hi! link markdownH1 NE_GreenBold
 hi! link markdownH2 NE_GreenBold
-hi! link markdownH3 NE_YellowBold
-hi! link markdownH4 NE_YellowBold
-hi! link markdownH5 NE_Yellow
-hi! link markdownH6 NE_Yellow
+hi! link markdownH3 NE_BlueBold
+hi! link markdownH4 NE_BlueBold
+hi! link markdownH5 NE_Blue
+hi! link markdownH6 NE_Blue
 
-hi! link markdownCode NE_Blue
-hi! link markdownCodeBlock NE_Blue
-hi! link markdownCodeDelimiter NE_Green
+hi! link markdownCode NE_Green
+hi! link markdownCodeBlock NE_Green
+hi! link markdownCodeDelimiter NE_Yellow
 
 hi! link markdownBlockquote NE_Brown
 hi! link markdownListMarker NE_Purple
@@ -423,7 +456,7 @@ hi! link markdownIdDeclaration markdownLinkText
 hi! link markdownUrlTitleDelimiter NE_Green
 
 call s:hi('markdownUrl',                   s:purple,      '',         'underline')
-call s:hi('markdownUrlDelimiter',          s:base3,       '',         '')
+call s:hi('markdownUrlDelimiter',          g:base3,       '',         '')
 hi! link markdownLinkDelimiter markdownUrlDelimiter
 hi! link markdownLinkTextDelimiter markdownUrlDelimiter
 " }}}
@@ -504,7 +537,7 @@ hi! link htmlArg NE_Purple
 
 hi! link htmlScriptTag NE_Orange
 hi! link htmlSpecialTagName NE_PurpleBold
-call s:hi('htmlTagN', s:base3,  '', 'none')
+call s:hi('htmlTagN', g:base3,  '', 'none')
 call s:hi('htmlLink', s:purple, '', 'underline')
 
 hi! link htmlSpecialChar NE_Orange
@@ -607,10 +640,10 @@ hi! link CocGitRemovedSign NE_RedSign
 hi! link CocGitTopRemovedSign NE_RedSign
 hi! link CocGitChangeRemovedSign NE_OrangeSign
 
-call s:hi('CocWarningFloat',            s:yellow,     s:base2,    'none')
-call s:hi('CocErrorFloat',              s:red,        s:base2,    'none')
-call s:hi('CocInfoFloat',               s:orange,     s:base2,    'none')
-call s:hi('CocHintFloat',               s:green,      s:base2,    'none')
+call s:hi('CocWarningFloat',            s:yellow,     g:base2,    'none')
+call s:hi('CocErrorFloat',              s:red,        g:base2,    'none')
+call s:hi('CocInfoFloat',               s:orange,     g:base2,    'none')
+call s:hi('CocHintFloat',               s:green,      g:base2,    'none')
 " }}}
 
 
