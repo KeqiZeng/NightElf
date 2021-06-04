@@ -127,13 +127,11 @@ endfun
 " }}}
 
 
-"if !exists('g:nightelf_italic')
-  "if has('gui_running') || $TERM_ITALICS == 'true'
-    "let g:nightelf_italic=1
-  "else
-    "let g:nightelf_italic=0
-  "endif
-"endif
+" Bold Function
+if !exists('g:nightelf_bold_function')
+  let g:nightelf_bold_function=0
+endif
+
 
 " Italic Comment
 if !exists('g:nightelf_italic_comment')
@@ -212,6 +210,7 @@ call s:hi('NE_GreenBold',               s:green,      '',    'bold')
 call s:hi('NE_PurpleBold',              s:purple,     '',    'bold')
 call s:hi('NE_BlueBold',                s:blue,       '',    'bold')
 call s:hi('NE_OrangeBold',              s:orange,     '',    'bold')
+call s:hi('NE_YellowBold',              s:yellow,     '',    'bold')
 
 call s:hi('NE_RedSign',                 s:red,        g:base1,    'none')
 call s:hi('NE_GreenSign',               s:green,      g:base1,    'none')
@@ -319,10 +318,16 @@ else
   call s:hi('Todo',                      g:base5,      g:base1,    'bold')
 endif
 
+
+" Function name
+if g:nightelf_bold_function == 1
+  hi! link Function NE_GreenBold
+else
+  hi! link Function NE_Green
+endif
+
 " Variable name
 hi! link Identifier NE_Purple
-" Function name
-hi! link Function NE_GreenBold
 " Character name
 hi! link Character NE_Orange
 " String name
@@ -387,7 +392,7 @@ hi! link cDefine Define
 " }}}
 
 " C++: {{{
-" require vim-cpp-modern
+" require vim-polyglot
 hi! link cppSTLdefine Define
 hi! link cppSTLexception Exception
 
@@ -415,8 +420,8 @@ hi! link  UsingDeclarationTag NE_Yellow
 
 
 " Python: {{{
-hi! link pythonBuiltinObj NE_Orange
-hi! link pythonBuiltinFunc NE_Orange
+hi! link pythonBuiltinObj NE_Purple
+hi! link pythonBuiltinFunc NE_Purple
 hi! link pythonDecoratorName NE_Green
 hi! link pythonImport NE_Blue
 hi! link pythonRun NE_Orange
@@ -427,42 +432,7 @@ call s:hi('pythonDot',                    g:base3,      g:base1,    'none')
 " }}}
 
 
-" Markdown: {{{
-call s:hi('markdownItalic',               s:blue,            '',      'italic')
-call s:hi('markdownBold',                 s:purple,          '',      'bold')
-call s:hi('markdownBoldItalic',           s:red,             '',      'bold,italic')
-
-hi! link markdownH1 NE_GreenBold
-hi! link markdownH2 NE_GreenBold
-hi! link markdownH3 NE_BlueBold
-hi! link markdownH4 NE_BlueBold
-hi! link markdownH5 NE_Blue
-hi! link markdownH6 NE_Blue
-
-hi! link markdownCode NE_Green
-hi! link markdownCodeBlock NE_Green
-hi! link markdownCodeDelimiter NE_Yellow
-
-hi! link markdownBlockquote NE_Brown
-hi! link markdownListMarker NE_Purple
-hi! link markdownOrderedListMarker NE_Brown
-hi! link markdownRule NE_Brown
-hi! link markdownHeadingRule NE_Brown
-
-hi! link markdownHeadingDelimiter NE_Orange
-
-hi! link markdownLinkText Statement
-hi! link markdownIdDeclaration markdownLinkText
-hi! link markdownUrlTitleDelimiter NE_Green
-
-call s:hi('markdownUrl',                   s:purple,      '',         'underline')
-call s:hi('markdownUrlDelimiter',          g:base3,       '',         '')
-hi! link markdownLinkDelimiter markdownUrlDelimiter
-hi! link markdownLinkTextDelimiter markdownUrlDelimiter
-" }}}
-
-
-" TeX {{{
+" TeX: {{{
 hi! link texRefZone NE_Green
 hi! link texMath NE_Blue
 " }}}
@@ -471,11 +441,11 @@ hi! link texMath NE_Blue
 " Go: {{{
 hi! link goDirective NE_Brown
 hi! link goConstants NE_Pink
-hi! link goDeclaration NE_Red
+hi! link goDeclaration NE_Pink
 hi! link goDeclType NE_Yellow
 hi! link goBuiltins NE_Orange
 hi! link goFunctionCall Function
-hi! link goMethodCall   Function
+hi! link goMethodCall Function
 " }}}
 
 
@@ -520,15 +490,55 @@ hi! link luaTable NE_Orange
 " }}}
 
 
-" Ruby: {{{
-hi! link rubyStringDelimiter String
-hi! link rubyInterpolationDelimiter NE_Green
-hi! link rubyBlockParameter NE_Purple
-hi! link  rubyBlockParameterList rubyBlockParameter
+" Markdown: {{{
+call s:hi('markdownItalic',               s:blue,            '',      'italic')
+call s:hi('markdownBold',                 s:purple,          '',      'bold')
+call s:hi('markdownBoldItalic',           s:red,             '',      'bold,italic')
+
+"hi! link markdownH1 NE_GreenBold
+"hi! link markdownH2 NE_GreenBold
+"hi! link markdownH3 NE_BlueBold
+"hi! link markdownH4 NE_BlueBold
+"hi! link markdownH5 NE_Blue
+"hi! link markdownH6 NE_Blue
+
+"hi! link markdownCode NE_Green
+"hi! link markdownCodeBlock NE_Green
+"hi! link markdownCodeDelimiter NE_Yellow
+
+"hi! link markdownBlockquote NE_Brown
+"hi! link markdownListMarker NE_Purple
+"hi! link markdownOrderedListMarker NE_Purple
+"hi! link markdownRule NE_Brown
+"hi! link markdownHeadingRule NE_Brown
+
+"hi! link markdownHeadingDelimiter NE_Orange
+
+"hi! link markdownLinkText NE_Orange
+"hi! link markdownIdDeclaration markdownLinkText
+"hi! link markdownUrlTitleDelimiter NE_Green
+
+"call s:hi('markdownUrl',                   s:purple,      '',         'underline')
+"call s:hi('markdownUrlDelimiter',          g:base4,       '',         '')
+
+" require vim-polyglot
+hi! link mkdLink NE_Green
+hi! link mkdURL NE_Purple
+hi! link mkdInlineURL NE_Purple
+hi! link mkdID NE_Pink
+hi! link mkdLinkTitle NE_Orange
+hi! link mkdCodeStart NE_Green
+hi! link mkdCodeDelimiter NE_Green
+hi! link mkdCodeEnd NE_Green
 " }}}
 
-
 " Html: {{{
+hi! link htmlH1 NE_BlueBold
+hi! link htmlH2 NE_BlueBold
+hi! link htmlH3 NE_YellowBold
+hi! link htmlH4 NE_YellowBold
+hi! link htmlH5 NE_Yellow
+hi! link htmlH6 NE_Yellow
 hi! link htmlTag NE_Blue
 hi! link htmlEndTag htmlTag
 
@@ -550,7 +560,6 @@ call s:hi('htmlBoldUnderline', s:purple, '', 'bold,underline')
 call s:hi('htmlBoldUnderlineItalic', s:red, '', 'bold,underline,italic')
 call s:hi('htmlUnderlineItalic', s:blue, '', 'underline,italic')
 " }}}
-
 
 " Xml: {{{
 hi! link xmlTag htmlTag
@@ -655,10 +664,10 @@ hi! link EasyMotionShade Comment
 
 " IndentLine: {{{
 if !exists('g:indentLine_color_term')
-  let g:indentLine_color_term = s:purple[1]
+  let g:indentLine_color_term = g:base4[1]
 endif
 if !exists('g:indentLine_color_gui')
-  let g:indentLine_color_gui = s:purple[0]
+  let g:indentLine_color_gui = g:base4[0]
 endif
 " }}}
 
