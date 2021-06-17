@@ -327,7 +327,7 @@ else
 endif
 
 " Variable name
-hi! link Identifier NE_Purple
+hi! link Identifier NE_Yellow
 " Character name
 hi! link Character NE_Orange
 " String name
@@ -343,10 +343,9 @@ hi! link Label NE_Blue
 " try, catch, throw
 hi! link Exception NE_Red
 " sizeof, "+", "*", etc.
-"hi! link Operator NE_Yellow
 call s:hi('Operator',                   g:base5,      '',         'none')
 " Any other keyword
-hi! link Keyword NE_Brown
+hi! link Keyword NE_Pink
 " Generic preprocessor
 hi! link PreProc NE_Blue
 " Preprocessor #include
@@ -354,7 +353,7 @@ hi! link Include NE_Blue
 " Preprocessor #define
 hi! link Define NE_Blue
 " Same as Define
-hi! link Macro NE_Blue
+hi! link Macro NE_Orange
 " Preprocessor #if, #else, #endif, etc.
 hi! link PreCondit NE_Blue
 " Generic constant
@@ -366,13 +365,13 @@ hi! link Number NE_Red
 " Floating point constant: 2.3e10
 hi! link Float NE_Red
 " Generic type
-hi! link Type NE_Pink
+hi! link Type NE_Purple
 " static, register, volatile, etc
-hi! link StorageClass NE_Yellow
+hi! link StorageClass NE_Purple
 " struct, union, enum, etc.
 hi! link Structure NE_Green
 " typedef
-hi! link Typedef NE_Pink
+hi! link Typedef NE_Purple
 " Special
 hi! link Special NE_Green
 " Error
@@ -446,8 +445,6 @@ hi! link texMath NE_Blue
 " Go: {{{
 hi! link goDirective NE_Brown
 hi! link goConstants NE_Pink
-hi! link goDeclaration NE_Pink
-hi! link goDeclType NE_Yellow
 hi! link goBuiltins NE_Orange
 hi! link goFunctionCall Function
 hi! link goMethodCall Function
