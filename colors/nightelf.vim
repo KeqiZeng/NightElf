@@ -343,7 +343,8 @@ hi! link Label NE_Blue
 " try, catch, throw
 hi! link Exception NE_Red
 " sizeof, "+", "*", etc.
-call s:hi('Operator',                   g:base5,      '',         'none')
+hi! link Operator NE_Blue
+"call s:hi('Operator',                   g:base5,      '',         'none')
 " Any other keyword
 hi! link Keyword NE_Pink
 " Generic preprocessor
@@ -683,7 +684,7 @@ hi! link GitGutterChangeDelete NE_OrangeSign
 " }}}
 
 
-"-------- Startify: {{{
+" Startify: {{{
 hi! link StartifyBracket NE_Brown
 hi! link StartifyFile NE_Green
 hi! link StartifyPath NE_Purple
@@ -691,4 +692,3 @@ hi! link StartifySlash NE_Purple
 hi! link StartifySection NE_Blue
 hi! link StartifyNumber NE_Red
 " }}}
-
