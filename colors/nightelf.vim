@@ -185,12 +185,12 @@ let g:base5 = [bases[4], 250]
 
 let s:red        = ['#f15e64', 168]
 let s:green      = ['#98c378', 108]
-let s:yellow     = ['#d8aa64', 179]
+let s:yellow     = ['#e5c07b', 179]
 let s:blue       = ['#86a6e8',  74]
 let s:purple     = ['#bb88e5', 140]
 let s:orange     = ['#e88854', 173]
 let s:pink       = ['#ff9999', 181]
-let s:teal       = ['#6abab6',  73]
+let s:teal       = ['#63d4d5',  73]
 let s:beige      = ['#dfbe8d', 180]
 let s:aqua       = ['#54ec8c',  50]
 let s:brown      = ['#a65832', 130]
@@ -684,11 +684,11 @@ hi! link GitGutterChangeDelete NE_OrangeSign
 " }}}
 
 
-" Startify: {{{
-hi! link StartifyBracket NE_Brown
-hi! link StartifyFile NE_Green
-hi! link StartifyPath NE_Purple
-hi! link StartifySlash NE_Purple
-hi! link StartifySection NE_Blue
-hi! link StartifyNumber NE_Red
-" }}}
+"" Startify: {{{
+"hi! link StartifyBracket NE_Brown
+"hi! link StartifyFile NE_Green
+"hi! link StartifyPath NE_Purple
+"hi! link StartifySlash NE_Purple
+"hi! link StartifySection NE_Blue
+"hi! link StartifyNumber NE_Red
+"" }}}
